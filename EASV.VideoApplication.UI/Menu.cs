@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using EASV.VideoApplication.Models;
 using Microsoft.VisualBasic;
 
 namespace EASV.VideoApplication
 {
     internal class Menu
     {
+        private VideoManager videoManager = new VideoManager();
         public void Start()
         {
             ShowWelcomeGreeting();
@@ -19,8 +23,10 @@ namespace EASV.VideoApplication
         {
             Console.WriteLine(StringConstants.SelectMenuItem);
             Console.WriteLine(StringConstants.SelectCreateVideo);
+            Console.WriteLine(StringConstants.SelectShowAllVideos);
             Console.WriteLine(StringConstants.SelectSearchVideo);
             Console.WriteLine(StringConstants.SelectExit);
+
         }
 
         private void StartLoop()
@@ -40,9 +46,13 @@ namespace EASV.VideoApplication
 
                 if (choice == 2)
                 {
-                    SearchVideo();
+                    ShowAllVideos();
                 }
                 
+                if (choice == 3)
+                {
+                    SearchVideo();
+                }
             }
         }
 
@@ -68,7 +78,6 @@ namespace EASV.VideoApplication
             {
                 return selection;
             }
-
             return -1;
         }
         
@@ -77,12 +86,47 @@ namespace EASV.VideoApplication
             Console.WriteLine("\n");
         }
 
+        private void ShowAllVideos()
+        {
+            List<Video> videos = videoManager.GetAllVideos();
+            foreach (Video video in videos)
+            {
+                Console.WriteLine(video.Id + " " + video.Name + " " + video.Release + " " + video.Storyline);
+            }
+        }
         private void CreateVideo()
         {
+            Video video = new Video();
             PrintNewLine();
+            
+            Console.WriteLine(StringConstants.Id);
+            var idString = Console.ReadLine();
+            int id;
+
+            if (int.TryParse(idString, out id))
+            {
+                video.Id = id;
+            }
+            
             Console.WriteLine(StringConstants.VideoName);
             var videoName = Console.ReadLine();
-            Console.WriteLine("Name of video: " + videoName);
+
+            video.Name = videoName;
+            
+            Console.WriteLine(StringConstants.Release);
+            string release = Console.ReadLine();
+            var parsedRelease = DateTime.Parse(release);
+
+            video.Release = parsedRelease;
+
+            Console.WriteLine(StringConstants.Storyline);
+            var storyline = Console.ReadLine();
+
+            video.Storyline = storyline;
+            
+            videoManager.CreateNewVideo(video);
+            
+            //Console.WriteLine("Name of video: " + videoName);
         }
 
         private void SearchVideo()

@@ -2,7 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EASV.VideoApplication.UI", "EASV.VideoApplication.UI\EASV.VideoApplication.UI.csproj", "{B75D81DF-3776-40EA-A0DF-9EA6D6DD96CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EASV.VideApplication.Models", "EASV.VideApplication.Models\EASV.VideApplication.Models.csproj", "{50C402BE-35D0-437C-AD13-491FF04B64F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EASV.VideoApplication.Models", "EASV.VideoApplication.Models\EASV.VideoApplication.Models.csproj", "{50C402BE-35D0-437C-AD13-491FF04B64F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EASV.VideoApplication.DB", "EASV.VideoApplication.DB\EASV.VideoApplication.DB.csproj", "{0709A8C3-4BB6-44AD-ACC2-382EFE160853}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +20,13 @@ Global
 		{50C402BE-35D0-437C-AD13-491FF04B64F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50C402BE-35D0-437C-AD13-491FF04B64F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50C402BE-35D0-437C-AD13-491FF04B64F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A0DA340-73A8-4F45-B737-5C1759B75BBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A0DA340-73A8-4F45-B737-5C1759B75BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A0DA340-73A8-4F45-B737-5C1759B75BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A0DA340-73A8-4F45-B737-5C1759B75BBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0709A8C3-4BB6-44AD-ACC2-382EFE160853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0709A8C3-4BB6-44AD-ACC2-382EFE160853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0709A8C3-4BB6-44AD-ACC2-382EFE160853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0709A8C3-4BB6-44AD-ACC2-382EFE160853}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
