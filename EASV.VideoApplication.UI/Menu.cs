@@ -118,6 +118,7 @@ namespace EASV.VideoApplication
             var parsedRelease = DateTime.Parse(release);
 
             video.Release = parsedRelease;
+            Console.WriteLine(parsedRelease);
 
             Console.WriteLine(StringConstants.Storyline);
             var storyline = Console.ReadLine();

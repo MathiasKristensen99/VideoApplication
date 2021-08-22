@@ -21,7 +21,7 @@ namespace EASV.VideoApplication.Models
 
         public void CreateNewVideo(Video video)
         {
-            List<Video> records = GetAllVideos();
+            List<Video> records = new List<Video>();
 
             Video newVideo = new Video();
             newVideo.Id = video.Id;
@@ -31,37 +31,25 @@ namespace EASV.VideoApplication.Models
             
             records.Add(newVideo);
 
-            var writer =
-                new StreamWriter("C:\\GitHub\\VideoApplication\\EASV.VideoApplication.DB\\data\\MOCK_DATA.csv");
-            var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture);
+            config.HasHeaderRecord = false;
             
-            csv.WriteRecords(records);
+            Stream stream = File.Open("C:\\GitHub\\VideoApplication\\EASV.VideoApplication.DB\\data\\MOCK_DATA.csv",
+                FileMode.Append);
+            
+            StreamWriter writer = new StreamWriter(stream);
+            CsvWriter csv = new CsvWriter(writer, config);
+            
+            {
+                csv.WriteRecords(records);
+            }
+            
             writer.Flush();
-
-            //bool append = true;
-            //var config = new CsvConfiguration(CultureInfo.InvariantCulture);
-            //config.HasHeaderRecord = !append;
-            
-
-            //Stream stream = File.Open("C:\\GitHub\\VideoApplication\\EASV.VideoApplication.DB\\data\\MOCK_DATA.csv",
-                //FileMode.Append);
-
-            //StreamWriter writer = new StreamWriter(stream);
-            //CsvWriter csv = new CsvWriter(writer, config);
-            //{
-                //csv.WriteField(video.Id);
-                //csv.WriteField(video.Name);
-                //csv.WriteField(video.Release);
-                //csv.WriteField(video.Storyline);
-                //csv.WriteRecords(records);
-            //}
-            
             
             foreach (Video videos in records)
             {
                 Console.WriteLine(videos.Id + " " + videos.Name + " " + videos.Release + " " + videos.Storyline);
             }
-            
         }
     }
 }
