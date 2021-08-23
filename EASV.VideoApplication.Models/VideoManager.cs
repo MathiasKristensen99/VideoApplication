@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 
 namespace EASV.VideoApplication.Models
 {
@@ -33,14 +34,17 @@ namespace EASV.VideoApplication.Models
 
             var config = new CsvConfiguration(CultureInfo.InvariantCulture);
             config.HasHeaderRecord = false;
+            var options = new TypeConverterOptions { Formats = new[] { "dd/MM/yyyy" } };
+            
             
             Stream stream = File.Open("C:\\GitHub\\VideoApplication\\EASV.VideoApplication.DB\\data\\MOCK_DATA.csv",
                 FileMode.Append);
             
             StreamWriter writer = new StreamWriter(stream);
             CsvWriter csv = new CsvWriter(writer, config);
-            
+
             {
+                csv.Context.TypeConverterOptionsCache.AddOptions<DateTime>(options);
                 csv.WriteRecords(records);
             }
             
