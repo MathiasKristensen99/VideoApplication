@@ -13,5 +13,6 @@
         public const string Release = "Type the videos release in dd/mm/yyyy";
         public const string Storyline = "Type the videos storyline";
         public const string VideoSearch = "Please decide what to search for \n 1: Id \n 2: Name";
+        public const string SearchName = "Search for a video by name";
     }
 }

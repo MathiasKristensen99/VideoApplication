@@ -7,7 +7,7 @@ namespace EASV.VideoApplication.DB
 {
     public class VideoDAO
     {
-        public List<Video> GetVideos()
+        public List<Video> GetAllVideos()
         {
             List<Video> videos = File.ReadAllLines("EASV.VideoApplication.DB/data/MOCK_DATA.csv").Skip(1)
                 .Select(v => Video.FromCSV(v)).ToList();

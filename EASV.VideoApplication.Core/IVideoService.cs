@@ -1,7 +1,14 @@
-﻿namespace EASV.VideoApplication.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace EASV.VideoApplication.Models
 {
     public interface IVideoService
     {
-        Video create(Video video);
+        List<Video> GetAllVideos();
+
+        void CreateNewVideo(Video video);
+
+        Video SearchVideoByName(String name);
     }
 }

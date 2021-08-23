@@ -8,7 +8,8 @@ namespace EASV.VideoApplication
 {
     internal class Menu
     {
-        private VideoManager videoManager = new VideoManager();
+        private VideoService _videoService = new VideoService();
+        
         public void Start()
         {
             ShowWelcomeGreeting();
@@ -88,7 +89,7 @@ namespace EASV.VideoApplication
 
         private void ShowAllVideos()
         {
-            List<Video> videos = videoManager.GetAllVideos();
+            List<Video> videos = _videoService.GetAllVideos();
             foreach (Video video in videos)
             {
                 Console.WriteLine(video.Id + " " + video.Name + " " + video.Release + " " + video.Storyline);
@@ -125,7 +126,7 @@ namespace EASV.VideoApplication
 
             video.Storyline = storyline;
             
-            videoManager.CreateNewVideo(video);
+            _videoService.CreateNewVideo(video);
             
             //Console.WriteLine("Name of video: " + videoName);
         }
@@ -140,13 +141,25 @@ namespace EASV.VideoApplication
                 {
                     
                 }
+
+                if (choice == 2)
+                {
+                    SearchMovieByName();
+                }
             }
+        }
+
+        private void SearchMovieByName()
+        {
+            Console.WriteLine(StringConstants.SearchName);
+            var movieName = Console.ReadLine();
+            
+            _videoService.SearchVideoByName(movieName);
         }
 
         private void PleaseTryAgain()
         {
             Console.WriteLine("Invalid number, please try again");
         }
-        
     }
 }
