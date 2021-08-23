@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EASV.VideoApplication.UI", "EASV.VideoApplication.UI\EASV.VideoApplication.UI.csproj", "{B75D81DF-3776-40EA-A0DF-9EA6D6DD96CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EASV.VideoApplication.Models", "EASV.VideoApplication.Models\EASV.VideoApplication.Models.csproj", "{50C402BE-35D0-437C-AD13-491FF04B64F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EASV.VideoApplication.Core", "EASV.VideoApplication.Core\EASV.VideoApplication.Core.csproj", "{50C402BE-35D0-437C-AD13-491FF04B64F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EASV.VideoApplication.DB", "EASV.VideoApplication.DB\EASV.VideoApplication.DB.csproj", "{0709A8C3-4BB6-44AD-ACC2-382EFE160853}"
 EndProject

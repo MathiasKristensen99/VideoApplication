@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\EASV.VideoApplication.Models\EASV.VideoApplication.Models.csproj" />
+      <ProjectReference Include="..\EASV.VideoApplication.Core\EASV.VideoApplication.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
