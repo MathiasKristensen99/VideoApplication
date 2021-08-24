@@ -157,6 +157,28 @@ namespace EASV.VideoApplication
                 if (video.Id.Equals(idToUpdate))
                 {
                     Console.WriteLine("You have selected: Name: " + video.Name + " Release: " + video.Release + " Storyline: " + video.Storyline);
+                    Video updatedVideo = new Video();
+                    updatedVideo.Id = idToUpdate;
+                    
+                    Console.WriteLine("Choose a new name:");
+                    var videoName = Console.ReadLine();
+
+                    updatedVideo.Name = videoName;
+                    
+                    Console.WriteLine("Write a new date in dd/mm/yyyy");
+                    var release = Console.ReadLine();
+                    var parsedRelease = DateTime.Parse(release);
+
+                    updatedVideo.Release = parsedRelease;
+                    
+                    Console.WriteLine(StringConstants.Storyline);
+                    var storyline = Console.ReadLine();
+
+                    updatedVideo.Storyline = storyline;
+                    
+                    _videoService.UpdateVideo(updatedVideo);
+                    
+                    Console.WriteLine("Video has been updated");
                 }
             }
         }

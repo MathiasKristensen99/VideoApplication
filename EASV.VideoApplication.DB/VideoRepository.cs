@@ -67,6 +67,7 @@ namespace EASV.VideoApplication.DB
                     Console.WriteLine("A video has been found:");
                     Console.WriteLine(video.Id + " " + video.Name);
                     return video;
+                    break;
                 }
             }
             return null;
@@ -97,7 +98,17 @@ namespace EASV.VideoApplication.DB
         {
             List<Video> videos = GetAllVideos();
             
-            throw new NotImplementedException();
+            videos.First(video1 => video1.Id == video.Id).Name = video.Name;
+            videos.First(video1 => video1.Id == video.Id).Release = video.Release;
+            videos.First(video1 => video1.Id == video.Id).Storyline = video.Storyline;
+            
+            var options = new TypeConverterOptions { Formats = new[] { "dd/MM/yyyy" } };
+            var writer = new StreamWriter("C:\\GitHub\\VideoApplication\\EASV.VideoApplication.DB\\data\\MOCK_DATA.csv");
+            var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csvWriter.Context.TypeConverterOptionsCache.AddOptions<DateTime>(options);
+            
+            csvWriter.WriteRecords(videos);
+            writer.Flush();
         }
     }
 }

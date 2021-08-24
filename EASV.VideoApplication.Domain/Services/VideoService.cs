@@ -30,7 +30,7 @@ namespace EASV.VideoApplication.Domain.Services
 
         public void UpdateVideo(Video video)
         {
-            throw new System.NotImplementedException();
+            _videoRepository.UpdateVideo(video);
         }
 
         public void CreateNewVideo(Video video)
