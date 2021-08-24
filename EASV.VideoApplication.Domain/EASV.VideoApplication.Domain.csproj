@@ -2,11 +2,10 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>EASV.VideoApplication.Models</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CsvHelper" Version="27.1.1" />
+      <ProjectReference Include="..\EASV.VideoApplication.Core\EASV.VideoApplication.Core.csproj" />
     </ItemGroup>
 
 </Project>

@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EASV.VideoApplication.Core\EASV.VideoApplication.Core.csproj" />
+      <ProjectReference Include="..\EASV.VideoApplication.Domain\EASV.VideoApplication.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>

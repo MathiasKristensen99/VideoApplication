@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using EASV.VideoApplication.Domain.IRepositories;
 using EASV.VideoApplication.Models;
+using EASV.VideoApplication.Models.IServices;
 using Microsoft.VisualBasic;
 
 namespace EASV.VideoApplication
 {
     internal class Menu
     {
-        private VideoService _videoService = new VideoService();
-        
+        private IVideoService _videoService;
+
+        public Menu(IVideoService service)
+        {
+            _videoService = service;
+        }
+
         public void Start()
         {
             ShowWelcomeGreeting();
@@ -26,6 +33,8 @@ namespace EASV.VideoApplication
             Console.WriteLine(StringConstants.SelectCreateVideo);
             Console.WriteLine(StringConstants.SelectShowAllVideos);
             Console.WriteLine(StringConstants.SelectSearchVideo);
+            Console.WriteLine(StringConstants.SelectDeleteVideo);
+            Console.WriteLine(StringConstants.SelectUpdateVideo);
             Console.WriteLine(StringConstants.SelectExit);
 
         }
@@ -54,6 +63,16 @@ namespace EASV.VideoApplication
                 {
                     SearchVideo();
                 }
+
+                if (choice == 4)
+                {
+                    DeleteVideo();
+                }
+
+                if (choice == 5)
+                {
+                    UpdateVideo();
+                }
             }
         }
 
@@ -68,7 +87,6 @@ namespace EASV.VideoApplication
             }
 
             return -1;
-            throw new NotImplementedException();
         }
 
         private int GetVideoSearchSelection()
@@ -92,9 +110,57 @@ namespace EASV.VideoApplication
             List<Video> videos = _videoService.GetAllVideos();
             foreach (Video video in videos)
             {
-                Console.WriteLine(video.Id + " " + video.Name + " " + video.Release + " " + video.Storyline);
+                Console.WriteLine("Id: " + video.Id + " Name: " + video.Name + " Release date: " + video.Release + " Storyline: " + video.Storyline);
             }
         }
+
+        private void DeleteVideo()
+        {
+            ShowAllVideos();
+            PrintNewLine();
+            Console.WriteLine("Select a video to delete, by typing the id and hit enter");
+            
+            var idString = Console.ReadLine();
+            int idToDelete = 0;
+            int id;
+
+            if (int.TryParse(idString, out id))
+            {
+                idToDelete = id;
+            }
+            
+            _videoService.DeleteVideo(idToDelete);
+            PrintNewLine();
+            Console.WriteLine("The video has been deleted");
+        }
+
+        private void UpdateVideo()
+        {
+            ShowAllVideos();
+            PrintNewLine();
+            
+            Console.WriteLine("Select a video to update, by typing the id and hit enter");
+            
+            var idString = Console.ReadLine();
+            int idToUpdate = 0;
+            int id;
+
+            if (int.TryParse(idString, out id))
+            {
+                idToUpdate = id;
+            }
+
+            List<Video> videos = _videoService.GetAllVideos();
+
+            foreach (Video video in videos)
+            {
+                if (video.Id.Equals(idToUpdate))
+                {
+                    Console.WriteLine("You have selected: Name: " + video.Name + " Release: " + video.Release + " Storyline: " + video.Storyline);
+                }
+            }
+        }
+        
         private void CreateVideo()
         {
             Video video = new Video();
@@ -127,8 +193,6 @@ namespace EASV.VideoApplication
             video.Storyline = storyline;
             
             _videoService.CreateNewVideo(video);
-            
-            //Console.WriteLine("Name of video: " + videoName);
         }
 
         private void SearchVideo()
